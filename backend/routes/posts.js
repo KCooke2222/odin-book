@@ -4,9 +4,11 @@ import { verifyToken } from "./auth.js";
 
 const router = Router();
 
+const authorSelect = { select: { id: true, username: true, pfpUrl: true } };
+
 const postInclude = {
-  author: { select: { id: true, username: true, pfpUrl: true } },
-  comments: true,
+  author: authorSelect,
+  comments: { include: { author: authorSelect, likes: true }, orderBy: { createdAt: "asc" } },
   likes: true,
 };
 
@@ -15,10 +17,11 @@ router.get("/feed", verifyToken, async (req, res) => {
     where: { followerId: req.user.id, status: "ACCEPTED" },
     select: { followingId: true },
   });
-  const followingIds = follows.map((f) => f.followingId);
+  // include your own posts in the feed alongside people you follow
+  const feedIds = [req.user.id, ...follows.map((f) => f.followingId)];
 
   const posts = await prisma.post.findMany({
-    where: { authorId: { in: followingIds } },
+    where: { authorId: { in: feedIds } },
     include: postInclude,
     orderBy: { createdAt: "desc" },
   });

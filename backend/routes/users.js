@@ -25,6 +25,19 @@ router.get("/", verifyToken, async (req, res) => {
   })));
 });
 
+// Incoming follow requests (people who requested to follow me)
+router.get("/follow-requests", verifyToken, async (req, res) => {
+  const requests = await prisma.follow.findMany({
+    where: { followingId: req.user.id, status: "PENDING" },
+    select: {
+      createdAt: true,
+      follower: { select: { id: true, username: true, pfpUrl: true } },
+    },
+    orderBy: { createdAt: "desc" },
+  });
+  res.json(requests.map((r) => ({ ...r.follower, requestedAt: r.createdAt })));
+});
+
 router.get("/:id", verifyToken, async (req, res) => {
   const user = await prisma.user.findUnique({
     where: { id: parseInt(req.params.id) },
@@ -59,11 +72,12 @@ router.get("/:id", verifyToken, async (req, res) => {
 });
 
 router.get("/:id/posts", verifyToken, async (req, res) => {
+  const authorSelect = { select: { id: true, username: true, pfpUrl: true } };
   const posts = await prisma.post.findMany({
     where: { authorId: parseInt(req.params.id) },
     include: {
-      author: { select: { id: true, username: true, pfpUrl: true } },
-      comments: true,
+      author: authorSelect,
+      comments: { include: { author: authorSelect, likes: true }, orderBy: { createdAt: "asc" } },
       likes: true,
     },
     orderBy: { createdAt: "desc" },
