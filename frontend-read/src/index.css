@@ -1,0 +1,166 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f9f6f0;
+  color: #1a1a1a;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+a {
+  color: #1a1a1a;
+}
+
+a:hover {
+  text-decoration: none;
+  opacity: 0.6;
+}
+
+.site {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+header {
+  border-bottom: 2px solid #1a1a1a;
+  padding-bottom: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+header nav a {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.post-preview {
+  border-bottom: 1px solid #d4cfc8;
+  padding-bottom: 2rem;
+}
+
+.post-preview h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.post-preview h2 a {
+  text-decoration: none;
+}
+
+.post-preview h2 a:hover {
+  text-decoration: underline;
+  opacity: 1;
+}
+
+.post-preview p {
+  color: #555;
+  font-size: 16px;
+}
+
+.post-full h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-full .back {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.post-content {
+  border-top: 1px solid #d4cfc8;
+  padding-top: 1.5rem;
+  margin-bottom: 3rem;
+  white-space: pre-wrap;
+}
+
+.comments h3 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #d4cfc8;
+  padding-bottom: 0.5rem;
+}
+
+.comment {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #ede9e2;
+}
+
+.comment-author {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.comment-form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.comment-form input,
+.comment-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #c8c3bb;
+  background: #faf8f4;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  border-radius: 0;
+}
+
+.comment-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.comment-form button {
+  align-self: flex-start;
+  background: #1a1a1a;
+  color: #f9f6f0;
+  border: none;
+  padding: 8px 20px;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.comment-form button:hover {
+  background: #333;
+}
+
+.post-content h2 { font-size: 1.4rem; margin: 1.5rem 0 0.5rem; }
+.post-content h3 { font-size: 1.1rem; margin: 1.25rem 0 0.4rem; }
+.post-content p { margin-bottom: 1rem; }
+.post-content ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+.post-content blockquote { border-left: 3px solid #c8c3bb; padding-left: 1rem; color: #555; margin: 1rem 0; font-style: italic; }
+.post-content code { background: #ede9e2; padding: 1px 5px; font-size: 15px; }
