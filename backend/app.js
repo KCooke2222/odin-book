@@ -4,6 +4,7 @@ import cors from "cors";
 import authRouter from "./routes/auth.js";
 import postsRouter from "./routes/posts.js";
 import commentsRouter from "./routes/comments.js";
+import usersRouter from "./routes/users.js";
 
 const app = express();
 
@@ -23,5 +24,6 @@ app.use(express.json());
 app.use("/auth", authRouter);
 app.use("/posts", postsRouter);
 app.use("/posts/:postId/comments", commentsRouter);
+app.use("/users", usersRouter);
 
 app.listen(3000, () => console.log("app listening on port 3000!"));
